@@ -22,6 +22,10 @@ with open(csvpath) as csvfile:
     
     #change in profit/loss for the first month
     Total_Change = 0
+    Greatest_increase1 = 0
+    Greatest_increase0 = 0
+    Greatest_decrease1 = 0
+    Greatest_decrease0 = 0
    
     for i in csvreader:
      #Calculating number of months
@@ -43,27 +47,30 @@ with open(csvpath) as csvfile:
      
       #changes in profit/losses over the entire period  
         Change = int(Budget_Table[k][1])-int(Budget_Table[j][1])
-        
         Total_Change = Total_Change + Change
+        #calculating the greatest increase in profit over the entire time
+        if int(Change) > int(Greatest_increase1):
+           Greatest_increase1 = Change
+           Greatest_increase0 = Budget_Table[k][0]
+        #Greatest decrease in profit over the entire period
+        if int(Change) < int(Greatest_decrease1):
+           Greatest_decrease1 = Change
+           Greatest_decrease0 = Budget_Table[k][0]
+
    
     #calculates the average of the changes   
     Average_Change = Total_Change/(len(Budget_Table)-1)
     #print(f'Average Change: ${Average_Change: .2f}')
 
- #Greatest increase in profit over the entire period
    
-    
-#Greatest decrease in profit over the entire period
-
-
 output = f'''
 Financial Analysis
 --------------------------
 Total months: {Total_months}
 Total: ${Net_Total_Amount}
 Average Change: ${Average_Change: .2f}
-Greatest Increase in Profits: 
-Greatest Decrease in Profits:
+Greatest Increase in Profits: {Greatest_increase0} (${Greatest_increase1})
+Greatest Decrease in Profits: {Greatest_decrease0} (${Greatest_decrease1})
 
 '''
 print(output)
@@ -72,13 +79,4 @@ with open(csvpath,'w') as textfile:
  textfile.write(output)
 
 
-
-#output
-  #  Financial Analysis
-#----------------------------
-#Total Months: 86
-#Total: $22564198
-#Average Change: $-8311.11
-#Greatest Increase in Profits: Aug-16 ($1862002)
-#Greatest Decrease in Profits: Feb-14 ($-1825558)
 
