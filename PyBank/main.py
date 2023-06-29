@@ -20,7 +20,7 @@ with open(csvpath) as csvfile:
     #net total amount for the first month
     Net_Total_Amount = int(Budget_Table[0][1])  
     
-    #change in profit/loss for the first month
+    #setting the variables
     Total_Change = 0
     Greatest_increase1 = 0
     Greatest_increase0 = 0
@@ -35,9 +35,6 @@ with open(csvpath) as csvfile:
      Net_Total_Amount = Net_Total_Amount + int(i[1])
      
      Total_months = len(Budget_Table)
-    #print(f'Total months: {Total_months}')
-    
-    #print(f'Total: ${Net_Total_Amount}')
 
     for j in range(len(Budget_Table)):
         #stops the calculation at the last row  
