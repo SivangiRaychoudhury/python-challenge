@@ -19,9 +19,10 @@ with open(csvpath) as csvfile:
     Poll_data = [next(csvreader)]
     
     #Initialising the variables
-    Names = []
-    Votes_per_Candidate = 0
-    Percentage = 0
+    Votes1=0
+    Votes2=0
+    Votes3=0
+    Winner=0
 
     for row in csvreader:
      Poll_data.append(row)
@@ -31,17 +32,21 @@ with open(csvpath) as csvfile:
 
     for i in range(Total_votes):
     #print(row[2])   
-     if Poll_data[i-1][2] != Poll_data[i][2]:
-      Names = Poll_data[i][2]
-      print(Names) 
-      i=Total_votes
-        #elif str(row[2]+1) != str(row[2]):
-     #Names.append(Poll_data[i][2])
-     #Candidates_name = str[Names]
+     if str(Poll_data[i][2]) == "Charles Casper Stockham":
+      Votes1 = Votes1+1
+     elif str(Poll_data[i][2]) == "Diana DeGette":
+      Votes2 = Votes2+1
+     elif str(Poll_data[i][2]) == "Raymon Anthony Doane":
+      Votes3 = Votes3+1
+      
 
-
-
-        
+Max_votes=max(Votes1,Votes2,Votes3)
+if Max_votes==Votes1:
+ Winner = "Charles Casper Stockham"
+elif Max_votes==Votes2:
+ Winner = "Diana DeGette"
+elif Max_votes==Votes3:
+ Winner = "Raymon Anthony Doane"      
     
     
 
@@ -63,11 +68,11 @@ Election Results
 ------------------------
 Total Votes: {Total_votes}
 ------------------------- 
-Charles Casper Stockham:
-Diana DeGette: 
-Raymon Anthony Doane:
+Charles Casper Stockham: {100*Votes1/Total_votes: .3f}% ({Votes1})
+Diana DeGette: {100*Votes2/Total_votes: .3f}% ({Votes2})
+Raymon Anthony Doane: {100*Votes3/Total_votes: .3f}% ({Votes3})
 -------------------------
-Winner: 
+Winner: {Winner}
 ------------------------
 '''
 
