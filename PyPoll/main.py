@@ -23,15 +23,18 @@ with open(csvpath) as csvfile:
     Votes2=0
     Votes3=0
     Winner=0
+    #a list to hold the unique candidates
+    candidate_list = []
 
     for row in csvreader:
      Poll_data.append(row)
     #total number of votes cast 
      Total_votes = len(Poll_data)
-
+     
 #List of candidates who received votes
-
-    
+     if row[2] not in candidate_list:
+      candidate_list.append(row[2])
+     #print(candidate_list)
 
     for i in range(Total_votes):
     #Total number of votes each candidate won 
