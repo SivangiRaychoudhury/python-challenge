@@ -1,4 +1,5 @@
-#Python-challenge
+#PYTHON-CHALLENGE:
+
 Two challenges are completed using the Python script.
 
 #INITIAL STEPS TAKEN
@@ -7,12 +8,13 @@ Two challenges are completed using the Python script.
 - Inside the local repository, two folders are created "PyBank" and "PyPoll".
 - Inside each assignment folder are the following:
    1. main.py -> file that holds the python script for the analysis
-   2. Resources -> folder containing the .csv file which is used for              the analysis.
-   3. Analysis -> folder containing the text file with the output                from the analysis.
+   2. Resources -> folder containing the .csv file which is used for the analysis.
+   3. Analysis -> folder containing the text file with the output from the analysis.
  
  - Pushed to the GitHub.
  
- #PyBank Analysis
+ #PYBANK ANALYSIS
+ 
  For this challenge, a python script is created that analyzes the dataset, budget_data.csv and calculated the following:
  
   1. The total number of months included in the dataset
@@ -20,6 +22,7 @@ Two challenges are completed using the Python script.
   3. The changes in "Profit/Losses" over the entire period, and then the average of those changes
   4. The greatest increase in profits (date and amount) over the entire period
   5. The greatest decrease in profits (date and amount) over the entire period
+
 - Finally, the script prints the output of the analysis to the terminal and exports it to a text file.
 
 The analysis gives the following results:
@@ -33,7 +36,8 @@ Greatest Increase in Profits: Aug-16 ($1862002)
 Greatest Decrease in Profits: Feb-14 ($-1825558)
 
 
-#PyPoll Analysis
+#PYPOLL ANALYSIS
+
 For this challenge, a python script is created that analyzes the dataset, election_data.csv and calculated the following:
 
   1. The total number of votes cast
