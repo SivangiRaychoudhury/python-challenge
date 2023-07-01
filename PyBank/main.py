@@ -28,12 +28,11 @@ with open(csvpath) as csvfile:
     Greatest_decrease0 = 0
    
     for i in csvreader:
-     #Calculating number of months
      Budget_Table.append(i)
      
      #calculate the Net total amount of profit and losses
      Net_Total_Amount = Net_Total_Amount + int(i[1])
-     
+     #Calculating number of months
      Total_months = len(Budget_Table)
 
     for j in range(len(Budget_Table)):
@@ -59,7 +58,7 @@ with open(csvpath) as csvfile:
     Average_Change = Total_Change/(len(Budget_Table)-1)
     #print(f'Average Change: ${Average_Change: .2f}')
 
-   
+#saves the output in the desired style   
 output = f'''
 Financial Analysis
 --------------------------
@@ -70,6 +69,7 @@ Greatest Increase in Profits: {Greatest_increase0} (${Greatest_increase1})
 Greatest Decrease in Profits: {Greatest_decrease0} (${Greatest_decrease1})
 
 '''
+#prints and writes the output in a text file and saves it in the given path
 print(output)
 csvpath = os.path.join('/Users/soma/Desktop/Bootcamp/python-challenge/PyBank/Analysis/PyBank_Analysis.txt')
 with open(csvpath,'w') as textfile:

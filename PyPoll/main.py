@@ -28,18 +28,21 @@ with open(csvpath) as csvfile:
      Poll_data.append(row)
     #total number of votes cast 
      Total_votes = len(Poll_data)
+
+#List of candidates who received votes
+
     
 
     for i in range(Total_votes):
-    #print(row[2])   
+    #Total number of votes each candidate won 
      if str(Poll_data[i][2]) == "Charles Casper Stockham":
       Votes1 = Votes1+1
      elif str(Poll_data[i][2]) == "Diana DeGette":
       Votes2 = Votes2+1
      elif str(Poll_data[i][2]) == "Raymon Anthony Doane":
       Votes3 = Votes3+1
-      
 
+#Winner of the election based on popular votes
 Max_votes=max(Votes1,Votes2,Votes3)
 if Max_votes==Votes1:
  Winner = "Charles Casper Stockham"
@@ -47,57 +50,28 @@ elif Max_votes==Votes2:
  Winner = "Diana DeGette"
 elif Max_votes==Votes3:
  Winner = "Raymon Anthony Doane"      
-    
-    
-
-
-
-#List of candidates who received votes
 
 #Percentage of votes each candidate won
+Charles_percentage = 100*Votes1/Total_votes
+Diana_percentage = 100*Votes2/Total_votes
+Raymon_percentage = 100*Votes3/Total_votes
 
-#Total number of votes each candidate won
-
-#Winner of the election based on popular votes
-
-
-
-
+#saves the output in the given format
 output = f'''
 Election Results
 ------------------------
 Total Votes: {Total_votes}
 ------------------------- 
-Charles Casper Stockham: {100*Votes1/Total_votes: .3f}% ({Votes1})
-Diana DeGette: {100*Votes2/Total_votes: .3f}% ({Votes2})
-Raymon Anthony Doane: {100*Votes3/Total_votes: .3f}% ({Votes3})
+Charles Casper Stockham: {Charles_percentage: .3f}% ({Votes1})
+Diana DeGette: {Diana_percentage: .3f}% ({Votes2})
+Raymon Anthony Doane: {Raymon_percentage: .3f}% ({Votes3})
 -------------------------
 Winner: {Winner}
 ------------------------
 '''
 
-
+#Prints and writes the output in textfile and saves it in the given path
 print(output)
 csvpath = os.path.join('/Users/soma/Desktop/Bootcamp/python-challenge/PyPoll/Analysis/PyPoll_Results.txt')
 with open(csvpath,'w') as textfile:
  textfile.write(output)
-
-
-
-
-
-
-
-
-
-#output:
-#Election Results
-#-------------------------
-#Total Votes: 369711
-#-------------------------
-#Charles Casper Stockham: 23.049% (85213)
-#Diana DeGette: 73.812% (272892)
-#Raymon Anthony Doane: 3.139% (11606)
-#-------------------------
-#Winner: Diana DeGette
-#-------------------------
