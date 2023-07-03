@@ -15,49 +15,38 @@ with open(csvpath) as csvfile:
     csv_header = next(csvreader)
     #print(csv_header)
 
-    #Reads the first row excluding the header
-    Poll_data = [next(csvreader)]
-    
+    #Reads the rows excluding the header
+    rows=list(csvreader)
+
+    #Total number of votes cast 
+    Total_votes=len(rows)
+
     #Initialising the variables
-    Votes1=0
-    Votes2=0
-    Votes3=0
-    Winner=0
-    #a list to hold the unique candidates
     candidate_list = []
+    Votes=[]
+    Percentage=[]
+    Winner=[]
+    Vote=0
 
-    for row in csvreader:
-     Poll_data.append(row)
-    #total number of votes cast 
-     Total_votes = len(Poll_data)
-     
-#List of candidates who received votes
-     if row[2] not in candidate_list:
-      candidate_list.append(row[2])
-     #print(candidate_list)
-
+    #List of candidates who received votes
     for i in range(Total_votes):
-    #Total number of votes each candidate won 
-     if str(Poll_data[i][2]) == "Charles Casper Stockham":
-      Votes1 = Votes1+1
-     elif str(Poll_data[i][2]) == "Diana DeGette":
-      Votes2 = Votes2+1
-     elif str(Poll_data[i][2]) == "Raymon Anthony Doane":
-      Votes3 = Votes3+1
+      if rows[i][2] not in candidate_list:
+       candidate_list.append(rows[i][2])
 
-#Winner of the election based on popular votes
-Max_votes=max(Votes1,Votes2,Votes3)
-if Max_votes==Votes1:
- Winner = "Charles Casper Stockham"
-elif Max_votes==Votes2:
- Winner = "Diana DeGette"
-elif Max_votes==Votes3:
- Winner = "Raymon Anthony Doane"      
-
-#Percentage of votes each candidate won
-Charles_percentage = 100*Votes1/Total_votes
-Diana_percentage = 100*Votes2/Total_votes
-Raymon_percentage = 100*Votes3/Total_votes
+    for j in range(len(candidate_list)):
+      for i in range(Total_votes):
+    #Total number and percentage of votes each candidate won 
+       if rows[i][2] == candidate_list[j]:
+        Vote = Vote+1   
+      percent = 100*Vote/Total_votes
+      Votes.append(Vote)
+      Percentage.append(percent)
+      #Winner of the election based on popular votes
+      if Votes[j]==max(Votes):
+        Winner=candidate_list[j]
+      #initialize Vote and percentage for the next candidate
+      Vote=0
+      percent=0  
 
 #saves the output in the given format
 output = f'''
@@ -65,9 +54,9 @@ Election Results
 ------------------------
 Total Votes: {Total_votes}
 ------------------------- 
-Charles Casper Stockham: {Charles_percentage: .3f}% ({Votes1})
-Diana DeGette: {Diana_percentage: .3f}% ({Votes2})
-Raymon Anthony Doane: {Raymon_percentage: .3f}% ({Votes3})
+{candidate_list[0]}: {Percentage[0]: .3f}% ({Votes[0]})
+{candidate_list[1]}: {Percentage[1]: .3f}% ({Votes[1]})
+{candidate_list[2]}: {Percentage[2]: .3f}% ({Votes[2]})
 -------------------------
 Winner: {Winner}
 ------------------------
